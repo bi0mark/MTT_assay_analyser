@@ -60,8 +60,7 @@ ggplot(mtt_data_rel, aes(x = factor(colnames(data), levels = colnames(data)), y 
            group = 1, width=0.5,
            fill='white',
            color='black') +
-  geom_errorbar(aes(ymin = mtt_data_rel - sd_data_rel, ymax = mtt_data_rel + sd_data_rel), width = 0.2)
-  #geom_signif(data = fortify(sd_data_rel), comparisons = list(c("Control", "35 nm + 1 mM 2DF")), 
-  #            map_signif_level=TRUE) + 
+  geom_signif(comparisons = list(c("Control", "35 nm + 1 mM 2DF")), 
+              map_signif_level=TRUE) + 
   #stat_compare_means(method = 'anova')+ 
-  
+  geom_errorbar(aes(ymin = mtt_data_rel - sd_data_rel, ymax = mtt_data_rel + sd_data_rel), width = 0.2)
