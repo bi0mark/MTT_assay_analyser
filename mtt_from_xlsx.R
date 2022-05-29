@@ -1,8 +1,8 @@
 # loading libraries
-library(tidyverse)
 library(ggpubr)
 library(rstatix)
 library(readxl)
+library(reshape2)
 
 # file import
 #print('Enter a pathway to the MTT data file in .xlsx format:')
@@ -44,23 +44,42 @@ mean_col_control <- mean(mean_col[reference_column])
 
 # mean standardization and SD calculation
 mtt_data_rel <- as.vector(mean_col / mean_col_control)
-mtt_data_rel <- data.frame(mtt_data_rel, row.names = colnames(data))
+mtt_data_rel <- data.frame(colnames(data), mtt_data_rel)
+colnames(mtt_data_rel)[1] <- 'samples'
+colnames(mtt_data_rel)[2] <- 'values'
 
 sd_mtt <- apply(data, 2, sd)
 sd_data_rel <- as.vector(sd_mtt / mean_col_control)
 
 x_axis_head <- readline('Specify the title of the X axis:')
 y_axis_head <- readline('Specify the title of the Y axis:')
+main_title <- readline('Specify the main title of plot:')
+
+table_for_stat <- melt(data)
+
+plot_directiry <- readline('Paste the path to the directory to save the plot with file name at the end:')
 
 #build the plot
-ggplot(mtt_data_rel, aes(x = factor(colnames(data), levels = colnames(data)), y = mtt_data_rel)) +
+pdf(path.expand(plot_directiry), width = 7, height = 8, bg = 'white', colormodel = 'cmyk', paper = 'A4')
+
+ggplot(mtt_data_rel, aes(x = factor(samples, levels = colnames(data)), y = values)) +
   xlab(x_axis_head) +
   ylab(y_axis_head)+
+  ggtitle(main_title) +
+  
   geom_bar(stat = "identity", 
            group = 1, width=0.5,
            fill='white',
            color='black') +
-  geom_signif(comparisons = list(c("Control", "35 nm + 1 mM 2DF")), 
-              map_signif_level=TRUE) + 
-  #stat_compare_means(method = 'anova')+ 
-  geom_errorbar(aes(ymin = mtt_data_rel - sd_data_rel, ymax = mtt_data_rel + sd_data_rel), width = 0.2)
+  
+  geom_errorbar(aes(ymin = values - sd_data_rel,
+                    ymax = values + sd_data_rel),
+                width = 0.2) +
+  
+  stat_compare_means(data = table_for_stat, aes(x = variable, y = value),
+                          method = 't.test',
+                          ref.group = colnames(data)[reference_column],
+                          label = "p.signif",
+                          label.y = 1.1)
+
+dev.off()
