@@ -80,6 +80,6 @@ ggplot(mtt_data_rel, aes(x = factor(samples, levels = colnames(data)), y = value
                           method = 't.test',
                           ref.group = colnames(data)[reference_column],
                           label = "p.signif",
-                          label.y = 1.1)
+                          label.y = 1.2)
 
 dev.off()
