@@ -31,6 +31,4 @@ The script supports interaction with user:
   * Saving directory is user defined
 
 ## Output results
-The output is a barplot with errorbars (standart deviation) and statistic significance (displayed as \*) based on T-test. Statictic differrence is measure between reference sample and other samples.
-
-![](plot.pdf)
+The output is a [barplot](plot.pdf) with errorbars (standart deviation) and statistic significance (displayed as \*) based on T-test. Statictic differrence is measure between reference sample and other samples.
