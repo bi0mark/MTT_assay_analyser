@@ -5,29 +5,33 @@ library(readxl)
 library(reshape2)
 
 # file import
-data_pathway <- readline('Enter a pathway to the MTT data file in .xlsx format:')
+print('Enter a pathway to the MTT data file in .xlsx format:')
+data_pathway <- readLines(con = 'stdin', n =1)
 data <- read_excel(data_pathway, col_names = TRUE, col_types = "numeric")
 
 print('Columns 1, 12 and rows A and H will be excluded from the analysis')
 data <- data[-c(1, 2, 9), -c(1, 2, 13)]
 
 # insert numbers of probes
-columns_numbers <- as.numeric(readline('Enter the number of target columns:'))
+print('Enter the number of target columns:')
+columns_numbers <- as.numeric(readLines(con = 'stdin', n=1))
 
-#print('Enter the number of target rows:')
-rows_numbers <- as.numeric(readline('Enter the number of target rows:'))
+print('Enter the number of target rows:')
+rows_numbers <- as.numeric(readLines(con = 'stdin', n=1))
 
 data <- data[c(1:rows_numbers), c(1:columns_numbers)]
 
 # named columns
 print(paste('You should enter', columns_numbers, 'columns names as in your experiment'))
 for (name in 1:columns_numbers) {
-  col_name <- readline(paste('Enter name for', name, 'column:'))
+  print(paste('Enter name for', name, 'column:'))
+  col_name <- readLines(con = 'stdin', n=1)
   colnames(data)[name] <- col_name
 }
 
 # insert a control column and data standartization
-reference_column <- as.numeric(readline('Print a number of a reference (control) column:'))
+print('Print a number of a reference (control) column:')
+reference_column <- as.numeric(readLines(con = 'stdin', n=1))
 
 # means calculation for control and other samples
 mean_col <- as.vector(apply(data, 2, mean))
@@ -44,15 +48,22 @@ sd_data_rel <- as.vector(sd_mtt / mean_col_control)
 
 table_for_stat <- melt(data)
 
-x_axis_title <- readline('Specify the title of the X axis:')
-y_axis_title <- readline('Specify the title of the Y axis:')
-main_title <- readline('Specify the main title of plot:')
+print('Specify the title of the X axis:')
+x_axis_title <- readLines(con = 'stdin', n=1)
+print('Specify the title of the Y axis:')
+y_axis_title <- readLines(con = 'stdin', n=1)
+print('Specify the main title of plot:')
+main_title <- readLines(con = 'stdin', n=1)
 
-plot_directiry <- readline('Paste the path to the directory to save the plot with file name at the end:')
-file_type <- readline('Please, type a file format (png, pdf, eps, ps, tex, jpeg, tiff, bmp, svg or wmf):')
-file_name <- readline('Type a name of the plot file with its format:')
+print('Paste the path to the directory to save the plot with file name at the end:')
+plot_directiry <- readLines(con = 'stdin', n=1)
+print('Please, type a file format (png, pdf, eps, ps, tex, jpeg, tiff, bmp, svg or wmf):')
+file_type <- readLines(con = 'stdin', n=1)
+print('Type a name of the plot file with its format:')
+file_name <- readLines(con = 'stdin', n=1)
 
-statistic_test <- readline('Specify statistic test wilcox.test (Mann-Whitney) or t.test:')
+print('Specify statistic test wilcox.test (Mann-Whitney) or t.test:')
+statistic_test <- readLines(con = 'stdin', n=1)
 
 #build the plot
 plotter <- function(file_name, plot_directiry, file_type, statistics, x_axis, y_axis, main_title) {
