@@ -51,20 +51,23 @@ colnames(mtt_data_rel)[2] <- 'values'
 sd_mtt <- apply(data, 2, sd)
 sd_data_rel <- as.vector(sd_mtt / mean_col_control)
 
-x_axis_head <- readline('Specify the title of the X axis:')
-y_axis_head <- readline('Specify the title of the Y axis:')
-main_title <- readline('Specify the main title of plot:')
-
 table_for_stat <- melt(data)
 
+x_axis_title <- readline('Specify the title of the X axis:')
+y_axis_title <- readline('Specify the title of the Y axis:')
+main_title <- readline('Specify the main title of plot:')
+
 plot_directiry <- readline('Paste the path to the directory to save the plot with file name at the end:')
+file_name <- readline('Type a name of the plot file:')
+file_type <- readline('Please, type a file type:')
+
+statistic_test <- readline('Specify statistic test wilcox.test (Mann-Whitney) or t.test:')
 
 #build the plot
-pdf(path.expand(plot_directiry), width = 7, height = 8, bg = 'white', colormodel = 'cmyk', paper = 'A4')
-
-ggplot(mtt_data_rel, aes(x = factor(samples, levels = colnames(data)), y = values)) +
-  xlab(x_axis_head) +
-  ylab(y_axis_head)+
+plotter <- function(file_name, plot_directiry, file_type, statistics, x_axis, y_axis, main_title) {
+  plot <- ggplot(mtt_data_rel, aes(x = factor(samples, levels = colnames(data)), y = values)) +
+  xlab(x_axis) +
+  ylab(y_axis)+
   ggtitle(main_title) +
   
   geom_bar(stat = "identity", 
@@ -77,9 +80,18 @@ ggplot(mtt_data_rel, aes(x = factor(samples, levels = colnames(data)), y = value
                 width = 0.2) +
   
   stat_compare_means(data = table_for_stat, aes(x = variable, y = value),
-                          method = 't.test',
+                          method = statistics,
                           ref.group = colnames(data)[reference_column],
                           label = "p.signif",
-                          label.y = 1.2)
+                          label.y = 1.2,
+                          show.legend = TRUE)
+  
+  ggsave(
+    filename = file_name,
+    path = plot_directiry,
+    plot = plot,
+    device = file_type
+  )
+}
 
-dev.off()
+plotter(file_name, plot_directiry, file_type, statistic_test, x_axis_title, y_axis_title, main_title)

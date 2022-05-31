@@ -28,7 +28,10 @@ The script supports interaction with user:
   * User-defined sample (columns) names
   * User-defined reference sample for measuring relative survival
   * User-defined titles of X and Y axis and a main plot title
-  * Saving directory is user defined
+  * Saving directory and file name is user-defined
+  * File type (png, eps, ps, tex (pictex), pdf, jpeg, tiff, bmp, svg or wmf) is also user-defined
 
 ## Output results
-The output is a [barplot](plot.pdf) with errorbars (standart deviation) and statistic significance (displayed as \*) based on T-test. Statictic differrence is measure between reference sample and other samples.
+The output is a barplot with errorbars (standart deviation) and statistic significance (displayed as \*) based on T-test. Statictic differrence is measure between reference sample and other samples.
+
+![](plot)
