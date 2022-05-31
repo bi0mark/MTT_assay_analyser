@@ -1,6 +1,6 @@
 # Data processing script for raw MTT analysis files
 
-This simple R script is devoted to prosessing raw [MTT assay](https://en.wikipedia.org/wiki/MTT_assay) data on the fly.
+This simple R script is devoted to processing raw [MTT assay](https://en.wikipedia.org/wiki/MTT_assay) data on the fly.
 
 ## Dependencies
 
@@ -30,6 +30,7 @@ The script supports interaction with user:
   * User-defined titles of X and Y axis and a main plot title
   * Saving directory and file name is user-defined
   * File type (png, eps, ps, tex (pictex), pdf, jpeg, tiff, bmp, svg or wmf) is also user-defined
+  * User-defined statistic method (T-test or Mann-Whitney U test)
 
 ## Output results
 The output is a barplot with errorbars (standart deviation) and statistic significance (displayed as \*) based on T-test. Statictic differrence is measure between reference sample and other samples.
