@@ -4,12 +4,13 @@ This simple R script is devoted to processing raw [MTT assay](https://en.wikiped
 
 ## Dependencies
 
-[R](https://www.r-project.org/) and addition packages (will be installed on first run):
+ 1. [R](https://www.r-project.org/) 
+ 2. Addition packages (will be installed on first run):
 
-  * readxl
-  * reshape2
-  * rstatix
-  * ggpubr
+    * readxl
+    * reshape2
+    * rstatix
+    * ggpubr
 
 ## Input data format
 
