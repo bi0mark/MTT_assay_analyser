@@ -35,21 +35,25 @@ The script supports interaction with user:
   
 ## Usage
 
-  Clone this repository `git clone https://github.com/bi0mark/MTT_assay_analyser` or download all files as archive ("Code" -> "Download ZIP"). Pathway to script file should not contain any Cyrillic symbols. 
+  Clone this repository `git clone https://github.com/bi0mark/MTT_assay_analyser` or [download all](https://github.com/bi0mark/MTT_assay_analyser/archive/refs/heads/main.zip) files as archive (button "Code" at the top of the page -> "Download ZIP"). Pathway to script file should not contain any Cyrillic symbols. 
   
   To edit script or run it in step-by-step mode you should use an IDE such as [Rstudio](https://www.rstudio.com/). If you want to work in a console, use a "\_console" version of the script and following instructions:
 
 ### Linux
 
-  1. Open a console in script folder 
-  2. Type `Rscript ./mtt_from_xlsx_console.R`
-  3. Follow script instructions
+  1. Unzip archive if you dowload archive
+  2. Open a console in script folder
+  3. Type `Rscript ./mtt_from_xlsx_console.R`
+  4. Follow script instructions
+  5. To specify the pathway to mtt_data_file copy the pathway at the top of file manager (example: `/home/.../scrits/MTT_assay_analyser/example_mtt_data.xls`)
   
 ### Windows
 
-  1. Right click on the file "mtt_from_xlsx_console.R" file -> "Open with..." -> "Choose another app" -> scroll down apps list and click "Find other app on this computer"
-  2. Find Rscript.exe application, it usually located in C:/Program files/R/R-"version"/bin/ and select it
-  3. Follow script instructions
+  1. Unzip archive if you dowload archive
+  2. Right click on the file "mtt_from_xlsx_console.R" file -> "Open with..." -> "Choose another app" -> scroll down apps list and click "Find other app on this computer"
+  3. Find Rscript.exe application, it usually located in C:/Program files/R/R-"version"/bin/ and select it
+  4. Follow script instructions
+  5. To specify the pathway to mtt_data_file copy the pathway at the top of file manager (example: `C:\for plot\MTT_assay_analyser-main\example_mtt_data.xls`)
 
 ## Output results
 The output is a bar plot with error bars (standard deviation) and statistic significance (displayed as \*) based on T-test or Mann-Whitney U test. Statistic difference is measure between reference sample and other samples.
