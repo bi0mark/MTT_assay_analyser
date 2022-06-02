@@ -33,6 +33,6 @@ The script supports interaction with user:
   * User-defined statistic method (T-test or Mann-Whitney U test)
 
 ## Output results
-The output is a barplot with errorbars (standart deviation) and statistic significance (displayed as \*) based on T-test. Statictic differrence is measure between reference sample and other samples.
+The output is a bar plot with error bars (standard deviation) and statistic significance (displayed as \*) based on T-test or Mann-Whitney U test. Statistic difference is measure between reference sample and other samples.
 
 ![](plot)
