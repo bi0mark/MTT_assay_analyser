@@ -4,7 +4,7 @@ This simple R script is devoted to processing raw [MTT assay](https://en.wikiped
 
 ## Dependencies
 
- 1. [R](https://www.r-project.org/) 
+ 1. [R](https://mirror.truenetwork.ru/CRAN/) 
  2. Addition packages (will be installed on first run):
 
     * readxl
