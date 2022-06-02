@@ -41,7 +41,7 @@ The script supports interaction with user:
 ### Linux
 
   1. Open a console in script folder 
-  2. Type `Rscript ./mtt_from_xlsx_console.R'
+  2. Type `Rscript ./mtt_from_xlsx_console.R`
   3. Follow script instructions
   
 ### Windows
