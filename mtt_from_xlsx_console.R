@@ -1,8 +1,16 @@
-# loading libraries
-library(ggpubr)
-library(rstatix)
-library(readxl)
-library(reshape2)
+# check libraries availability 
+usePackage <- function(p) 
+{
+  if (!is.element(p, installed.packages()[,1]))
+    install.packages(p, dep = TRUE, repos = 'https://cloud.r-project.org')
+  require(p, character.only = TRUE)
+}
+
+requirments <- c('ggpubr', 'rstatix', 'readxl', 'reshape2') 
+
+for (package_name in requirments) {
+  usePackage(package_name)
+}
 
 # file import
 print('Enter a pathway to the MTT data file in .xlsx format:')

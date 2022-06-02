@@ -1,8 +1,16 @@
-# loading libraries
-library(ggpubr)
-library(rstatix)
-library(readxl)
-library(reshape2)
+# check libraries availability 
+usePackage <- function(p) 
+{
+  if (!is.element(p, installed.packages()[,1]))
+    install.packages(p, dep = TRUE, repos = 'https://cloud.r-project.org')
+  require(p, character.only = TRUE)
+}
+
+requirments <- c('ggpubr', 'rstatix', 'readxl', 'reshape2') 
+
+for (package_name in requirments) {
+  usePackage(package_name)
+}
 
 # file import
 data_pathway <- readline('Enter a pathway to the MTT data file in .xlsx format:')
@@ -48,7 +56,7 @@ x_axis_title <- readline('Specify the title of the X axis:')
 y_axis_title <- readline('Specify the title of the Y axis:')
 main_title <- readline('Specify the main title of plot:')
 
-plot_directiry <- readline('Paste the path to the directory to save the plot with file name at the end:')
+plot_directiry <- readline('Paste the path to the directory to save the plot:')
 file_type <- readline('Please, type a file format (png, pdf, eps, ps, tex, jpeg, tiff, bmp, svg or wmf):')
 file_name <- readline('Type a name of the plot file with its format:')
 
@@ -57,8 +65,8 @@ statistic_test <- readline('Specify statistic test wilcox.test (Mann-Whitney) or
 #build the plot
 plotter <- function(file_name, plot_directiry, file_type, statistics, x_axis, y_axis, main_title) {
   plot <- ggplot(mtt_data_rel, aes(x = factor(samples, levels = colnames(data)), y = values)) +
-  xlab(x_axis) +
-  ylab(y_axis)+
+  xlab(x_axis_title) +
+  ylab(y_axis_title)+
   ggtitle(main_title) +
   
   geom_bar(stat = "identity", 
