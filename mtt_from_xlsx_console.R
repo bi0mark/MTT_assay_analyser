@@ -13,12 +13,14 @@ for (package_name in requirments) {
 }
 
 # file import
-print('Enter a pathway to the MTT data file in .xlsx format:')
+print('Enter a pathway to the MTT data file in .xls or .xlsx format:')
 data_pathway <- readLines(con = 'stdin', n =1)
 data <- read_excel(data_pathway, col_names = TRUE, col_types = "numeric")
 
 print('Columns 1, 12 and rows A and H will be excluded from the analysis')
 data <- data[-c(1, 2, 9), -c(1, 2, 13)]
+
+print(data)
 
 # insert numbers of probes
 print('Enter the number of target columns:')
@@ -36,6 +38,8 @@ for (name in 1:columns_numbers) {
   col_name <- readLines(con = 'stdin', n=1)
   colnames(data)[name] <- col_name
 }
+
+print(data)
 
 # insert a control column and data standartization
 print('Print a number of a reference (control) column:')
