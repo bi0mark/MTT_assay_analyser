@@ -39,7 +39,7 @@ The script supports interaction with user:
   
   To edit script or run it in step-by-step mode you should use an IDE such as [Rstudio](https://www.rstudio.com/). If you want to work in a console, use a "\_console" version of the script and following instructions:
 
-### Linux
+### Linux or macOS
 
   1. Unzip archive if you dowload archive
   2. Open a console in script folder
