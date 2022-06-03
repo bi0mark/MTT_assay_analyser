@@ -67,7 +67,7 @@ y_axis_title <- readLines(con = 'stdin', n=1)
 print('Specify the main title of plot:')
 main_title <- readLines(con = 'stdin', n=1)
 
-print('Paste the path to the directory to save the plot with file name at the end:')
+print('Paste the path to the directory to save the plot:')
 plot_directiry <- readLines(con = 'stdin', n=1)
 print('Please, type a file format (png, pdf, eps, ps, tex, jpeg, tiff, bmp, svg or wmf):')
 file_type <- readLines(con = 'stdin', n=1)
